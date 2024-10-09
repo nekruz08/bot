@@ -4,4 +4,8 @@ make run    запусить задача run в Makefile
 git status  проверяем статус, как обстоят дела
 git init    инициализируем локальную репозиторию
 git add .   добовляем все изменения в отслеживаемую
-
+git commit -m "Initial commit"  наш первый коммить с сообщением о чем то
+git remote add origin https://github.com/nekruz08/bot.git
+git branch -M master
+git push -u origin master
+go get github.com/go-telegram-bot-api/telegram-bot-api
