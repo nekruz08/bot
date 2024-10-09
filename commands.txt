@@ -9,3 +9,11 @@ git remote add origin https://github.com/nekruz08/bot.git
 git branch -M master
 git push -u origin master
 go get github.com/go-telegram-bot-api/telegram-bot-api
+
+export TOKEN=8124804402:AAExuhpCMJeEpprkxrRi2boWImCeX9LxbRs так мы задаем токен в переменную среду на уровне оболчки
+source ~/.bashrc    перезапускаем что бы изменения вошли в силу
+source ~/.zshrc     перезапускаем что бы изменения вошли в силу 
+
+TOKEN=8124804402:AAExuhpCMJeEpprkxrRi2boWImCeX9LxbRs make run одноразово задаем токен и используем, но он нигде ну сохраняется
+
+go get github.com/joho/godotenv библиотека для прочитения .env файла

@@ -51,17 +51,66 @@
 //
 // -------------------------------------------------------------------------------------------------
 // VERSION 2
+// package main
+
+// import (
+// 	"log"
+
+// 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+// )
+
+// const token="8124804402:AAExuhpCMJeEpprkxrRi2boWImCeX9LxbRs"
+
+// func main() {
+// 	bot, err := tgbotapi.NewBotAPI(token)
+// 	if err != nil {
+// 		log.Panic(err)
+// 	}
+
+// 	bot.Debug = true
+
+// 	log.Printf("Authorized on account %s", bot.Self.UserName)
+
+// 	u := tgbotapi.NewUpdate(0)
+// 	u.Timeout = 60
+// 	// u:=tgbotapi.UpdateConfig{
+// 	// 	Timeout: 60,
+// 	// }
+
+// 	updates := bot.GetUpdatesChan(u)
+// 	for update := range updates {
+// 		if update.Message != nil { // If we got a message
+// 			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+
+// 			// msg.ReplyToMessageID = update.Message.MessageID
+// 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "You wrote: "+update.Message.Text)
+
+//				bot.Send(msg)
+//			}
+//		}
+//	}
+//
+// -------------------------------------------------------------------------------------------------
+// VERSION 3
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/joho/godotenv"
 )
 
-const token="8124804402:AAExuhpCMJeEpprkxrRi2boWImCeX9LxbRs"
-
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	token := os.Getenv("TOKEN") // откроем командную строку, намбираем команду: TOKEN=8124804402:AAExuhpCMJeEpprkxrRi2boWImCeX9LxbRs так мы задаем токен
+	fmt.Println("Bot token:", token)
 	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
@@ -76,7 +125,7 @@ func main() {
 	// u:=tgbotapi.UpdateConfig{
 	// 	Timeout: 60,
 	// }
-	
+
 	updates := bot.GetUpdatesChan(u)
 	for update := range updates {
 		if update.Message != nil { // If we got a message
